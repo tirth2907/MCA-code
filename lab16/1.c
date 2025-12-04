@@ -1,9 +1,3 @@
-// 1. Write a menu driven program to implement following operations on the singly 
-// linked list: 
-// •  Delete the first node of the linked list  
-// •  Delete the last node of the linked list  
-// •  Display the list  
-// •  Delete a specific node 
 #include <stdio.h>
 #include <stdlib.h>
 

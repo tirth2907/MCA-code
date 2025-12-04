@@ -1,9 +1,3 @@
-// Write a menu driven program to implement following operations on the 
-// Ordered linked list: 
-// • Insert a node  
-// • Delete a node  
-// • Display the list  
-// • Count number of nodes 
 #include <stdio.h>
 #include <stdlib.h>
 

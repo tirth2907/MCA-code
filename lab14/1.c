@@ -1,5 +1,3 @@
-// Write a program to get n elements of an array from user and print those 
-// elements using pointer. 
 #include <stdio.h>
 #include <stdlib.h>
 int main() {
