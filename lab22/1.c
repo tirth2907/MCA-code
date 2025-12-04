@@ -1,145 +1,146 @@
+// Write a menu driven program to implement following operations on the 
+// Doubly Linked List. 
+// • Insert a node in doubly linked list 
+// • Delete a node in doubly linked list 
+// • Display the list 
+// • Count the number of nodes
 #include <stdio.h>
 #include <stdlib.h>
 
 struct Node {
     int data;
-    struct Node* next;
+    struct Node* lptr;
+    struct Node* rptr;
 };
 
-struct Node* last = NULL;
+struct Node* first = NULL;
+struct node* l = NULL;
+struct node* r = NULL;
 
 void insertAtBeginning(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
-    if (last == NULL) {
-        last = newNode;
-        newNode->next = newNode; 
-    } else {
-        newNode->next = last->next;
-        last->next = newNode;
+    newNode->lptr = NULL;
+    newNode->rptr = first;
+    if (first != NULL) {
+        first->lptr = newNode;
     }
+    first = newNode;
 }
 
 void insertAtEnd(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
-    if (last == NULL) {
-        last = newNode;
-        newNode->next = newNode; 
+    newNode->rptr = NULL;
+    if (first == NULL) {
+        newNode->lptr = NULL;
+        first = newNode;
     } else {
-        newNode->next = last->next;
-        last->next = newNode;
-        last = newNode; 
+        struct Node* temp = first;
+        while (temp->rptr != NULL) {
+            temp = temp->rptr;
+        }
+        temp->rptr = newNode;
+        newNode->lptr = temp;
     }
 }
 
 void displayList() {
-    if (last == NULL) {
-        printf("List is empty\n");
-        return;
-    }
-    struct Node* temp = last->next; 
-    do {
+    struct Node* temp = first;
+    while (temp != NULL) {
         printf("%d\n", temp->data);
-        temp = temp->next;
-    } while (temp != last->next);
+        temp = temp->rptr;
+    }
 }
 
 int countNodes() {
-    if (last == NULL) {
-        return 0;
-    }
     int count = 0;
-    struct Node* temp = last->next; 
-    do {
+    struct Node* temp = first;
+    while (temp != NULL) {
         count++;
-        temp = temp->next;
-    } while (temp != last->next);
+        temp = temp->rptr;
+    }
     return count;
 }
 
 void deleteFirstNode() {
-    if (last == NULL) {
+    if (first == NULL) {
         printf("underflow\n");
         return;
     }
-    struct Node* first = last->next;
-    if (first == last) {
-        free(first);
-        last = NULL;
-    } else {
-        last->next = first->next;
-        free(first);
+    struct Node* temp = first;
+    first = first->rptr;
+    if (first != NULL) {
+        first->lptr = NULL;
     }
+    free(temp);
 }
 
 void deleteLastNode() {
-    if (last == NULL) {
+    if (first == NULL) {
         printf("underflow\n");
         return;
     }
-    struct Node* first = last->next;
-    if (first == last) {
-        free(last);
-        last = NULL;
-    } else {
-        struct Node* temp = first;
-        while (temp->next != last) {
-            temp = temp->next;
-        }
-        temp->next = last->next;
-        free(last);
-        last = temp;
+    if (first->rptr == NULL) {
+        free(first);
+        first = NULL;
+        return;
     }
+    struct Node* temp = first;
+    while (temp->rptr != NULL) {
+        temp = temp->rptr;
+    }
+    temp->lptr->rptr = NULL;
+    free(temp);
 }
 
 void deleteAtN(int x)
 {
-    if (last == NULL) {
+    if (first == NULL) {
         printf("underflow\n");
         return;
     }
-    struct Node* first = last->next;
-    struct Node *save = first;
-    struct Node *pred = last;
 
-    do {
-        if (save->data == x) {
-            if (save == first) {
-                last->next = first->next;
-            } else if (save == last) {
-                pred->next = last->next;
-                last = pred;
-            } else {
-                pred->next = save->next;
+    struct Node *current = first;
+    if (current->data == x) {
+        first = current->rptr;
+        if (first != NULL) {
+            first->lptr = NULL;
+        }
+        free(current);
+        return;
+    }
+
+   
+    while (current != NULL) {
+        if (current->data == x) {
+            if (current->rptr != NULL) {
+                current->rptr->lptr = current->lptr;
             }
-            free(save);
+            if (current->lptr != NULL) {
+                current->lptr->rptr = current->rptr;
+            }
+            free(current);
             return;
         }
-        pred = save;
-        save = save->next;
-    } while (save != first);
+        current = current->rptr;
+    }
 
-    printf("Value %d not found in the list.\n", x);
+    printf("Node with value %d not found.\n", x);
 }
 
-void main(void) {
+int main(void) {
     insertAtBeginning(10);
     insertAtEnd(20);
     insertAtBeginning(5);
     insertAtEnd(30);
-
-    printf("Initial list:\n");
+    insertAtBeginning(1);  
     displayList();
-
+    printf("\n");
     deleteLastNode();
     deleteFirstNode();
-    deleteAtN(20);
-
-    printf("\nList after deletions:\n");
+    printf("List after deletions:\n");
     displayList();
-
     printf("Total nodes: %d\n", countNodes());
-
+    return 0;
 }
-
