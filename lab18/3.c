@@ -1,5 +1,4 @@
-// Write a program to copy a linked list. 
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdlib.h>
 
 struct Node {
@@ -34,7 +33,7 @@ void displayList() {
 
 struct Node* copyList() {
     if (first == NULL) {
-        return NULL; // Return NULL if the original list is empty
+        return NULL; 
     }
 
     struct Node* newHead = NULL;
@@ -47,11 +46,11 @@ struct Node* copyList() {
         newNode->next = NULL;
 
         if (newHead == NULL) {
-            newHead = newNode; // Set the head of the new list
-            newTail = newNode; // Initialize the tail
+            newHead = newNode; 
+            newTail = newNode; 
         } else {
-            newTail->next = newNode; // Append to the new list
-            newTail = newNode;       // Update the tail
+            newTail->next = newNode; 
+            newTail = newNode;       
         }
         current = current->next;
     }

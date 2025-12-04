@@ -1,10 +1,3 @@
-// Write a menu driven program to implement following operations on the 
-// Doubly Linked List. 
-// • Insert a node in doubly linked list 
-// • Delete a node in doubly linked list 
-// • Display the list 
-// • Count the number of nodes
-
 #include <stdio.h>
 #include <stdlib.h>
 

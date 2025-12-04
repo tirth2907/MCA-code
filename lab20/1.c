@@ -1,13 +1,3 @@
-// . Write a menu driven program to implement following operations on the 
-// Circular Linked List. 
-// •  Insert a node at the beginning of the circular linked list  
-// •  Insert a node at the end of the circular linked list  
-// •  Display the list  
-// •  Count the nodes
-// • Delete a node at the beginning of the circular linked list  
-// • Delete a node at the end of the circular linked list  
-// • Display the list 
-// • Delete a specific node  
 #include <stdio.h>
 #include <stdlib.h>
 

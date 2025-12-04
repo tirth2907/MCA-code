@@ -1,8 +1,3 @@
-// Write a program to remove the duplicates nodes from given sorted Linked 
-// List.  
-// Input: 1 → 1 → 6 → 13 → 13 → 13 → 27 → 27  
-// Output: 1 → 6 → 13 → 27  
-
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,4 +1,3 @@
-// Write a program to sort elements of a linked list.
 #include <stdio.h>
 #include <stdlib.h>
 
