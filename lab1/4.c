@@ -8,7 +8,6 @@ void main(){
     for (int i = 1; i <= n && i <= m; i++)
     {
         if (n%i ==0 && m%i ==0)
-
         {
             gcd = i;
         }
